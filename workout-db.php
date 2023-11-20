@@ -4,7 +4,8 @@
 require("connect-db.php");
 
 # function to create a new user account 
-function addUser($username, $first, $last, $pass,$email, $id)
+function addUser($username, $first, $last, $pass, $email, $id)
+# added layer of security --> hashing password 
 {
     global $db;
     //$query = "insert into friends values ('" . $friendname . "', '" . $major . "', '" . $year . "')";
