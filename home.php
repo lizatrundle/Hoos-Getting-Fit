@@ -1,7 +1,10 @@
 <?php 
 require("connect-db.php");
 require("workout-db.php");
+listOfUsers = getAllUsers();
 <?>
+
+
 
 <!DOCTYPE html>
 <html>

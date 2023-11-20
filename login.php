@@ -1,11 +1,8 @@
 <?php 
-// require("connect-db.php");
-// testing a change for github
-//another ch
 require("workout-db.php");
+require("connect-db.php");
 
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // session_start();
   // Check if the login form was submitted
   if (isset($_POST['login'])) {
       // Get email and password from the form
@@ -14,11 +11,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $password = hash('sha256', $password); // Hash the password
 
       // Check if the user exists in the database
-      $result = checkUser($email, $password); // Assuming checkUser is defined in workout-db.php
+      $result = checkUser($email, $password); 
 
       if ($result) {
           // User exists, show success message
-          session_start();
+          
           $_SESSION['email'] = $email;
           echo "Login successful!";
           header('Location: home.php');
@@ -30,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           echo "<a href='login.php'>Try again</a> | <a href='newaccount.php'>Create new user</a>";
       }
   }
-  if (isset($_POST['new-account'])) {
+  if (isset($_POST['newaccount'])) {
     // Process the data for creating a new account
     $email = $_POST['email'];
     $password = $_POST['pass'];
@@ -38,13 +35,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $last = $_POST['last'];
     $id = $_POST['id'];
     $username = $_POST['username'];
-    addUser($username, $first, $last, $password, $email, $id); // Assuming addUser is defined in workout-db.php
+    addUser($username, $first, $last, $password, $email, $id); 
 
     // Redirect to the home page after creating the account
     header("Location: home.php");
     exit();
 }
-}
+
 ?>
 
 <!DOCTYPE html>
@@ -100,7 +97,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <input type="text" class="form-control" name="username" required />
             </div>
 
-            <input type="submit" value="Create Account" name="new-account" class="btn btn-dark" />
+            <input type="submit" value="Create Account" name="newaccount" class="btn btn-dark" />
 
         </form>
 
