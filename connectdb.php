@@ -5,7 +5,7 @@
  $username = 'emt8kdn'; 
  $password = 'DBProj2023!';
  $host = 'mysql01.cs.virginia.edu';
- $dbname = 'emt8kdn_b';
+ $dbname = 'emt8kdn';
  $dsn = "mysql:host=$host;dbname=$dbname";
 ////////////////////////////////////////////
 

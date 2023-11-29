@@ -1,49 +1,40 @@
-<?php 
-require("connect-db.php");
-require("workout-db.php");
-listOfUsers = getAllUsers();
-<?>
-
-
 
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta charset="UTF=8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="your name">
-    <meta name="description" content="include some description about your page"> 
-
-    <title>Get started with db</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="icon" type="image/png" href="http://www.cs.virginia.edu/~up3f/cs4750/images/db-icon.png" />
+    <meta name="description" content="include some description about your page">
+    <title> DashBoard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      >
 </head>
+<body style="background-color: lightorange;">
+
+<?php 
 
 
+$email = array_key_exists('email', $_COOKIE) ? $_COOKIE['email'] : 'email not found in cookie';
 
-<body> 
-<div class="container">
-  <h1>Hoos Getting Fit Home page </h1>
-    <h2>current users</h2>
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Username</th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Email</th>
-        </tr>
-      </thead>
-      <tbody>
-        <?php foreach ($listOfUsers as $user): ?>
-          <tr>
-            <td><?php echo $user['username']; ?></td>
-            <td><?php echo $user['first']; ?></td>
-            <td><?php echo $user['last']; ?></td>
-            <td><?php echo $user['email']; ?></td>
-          </tr>
-        <?php endforeach; ?>
-      </tbody>
-    </body>
+setrawcookie('email', $_COOKIE['email'] = $email);
+
+?>  
+  <div class="container">
+    <h1>Welcome, <font color="green" style="font-style:italic"><?php echo $email; ?></font></h1>
+    <p>
+      This is your dahsboard 
+    </p>
+   
+    <p>
+      Log workout <a href="logworkout.php" title="Start the first question"> log workout</a>.
+      <br/><br/>
+      Or <a href="logout.php">log out</a>.     
+    </p>
+
+    
+  </div>    
+</body>
 </html>

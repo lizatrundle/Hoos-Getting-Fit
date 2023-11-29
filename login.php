@@ -1,109 +1,70 @@
-<?php 
-require("workout-db.php");
-require("connect-db.php");
+<?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
-    // session_start();
-  // Check if the login form was submitted
-  if (isset($_POST['login'])) {
-      // Get email and password from the form
-      $email = $_POST['email'];
-      $password = $_POST['pass'];
-      $password = hash('sha256', $password); // Hash the password
+# doing login by setting cookies
 
-      // Check if the user exists in the database
-      $result = checkUser($email, $password); 
-
-      if ($result) {
-          // User exists, show success message
-          
-          $_SESSION['email'] = $email;
-          echo "Login successful!";
-          header('Location: home.php');
-          exit();
-      } else {
-          // User does not exist, give option to try again or create a new user
-          echo "Invalid login. Would you like to try again or create a new user?";
-          echo "<br>";
-          echo "<a href='login.php'>Try again</a> | <a href='newaccount.php'>Create new user</a>";
-      }
-  }
-  if (isset($_POST['newaccount'])) {
-    // Process the data for creating a new account
-    $email = $_POST['email'];
-    $password = $_POST['pass'];
-    $first = $_POST['first'];
-    $last = $_POST['last'];
-    $id = $_POST['id'];
-    $username = $_POST['username'];
-    addUser($username, $first, $last, $password, $email, $id); 
-
-    // Redirect to the home page after creating the account
-    header("Location: home.php");
-    exit();
-}
-
+include('connectdb.php');
+require('workoutdb.php');
 ?>
 
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF=8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="author" content="liza trundle">
-    <meta name="login page" content="login to existing account or create new account"> 
 
-    <title>Hoos getting fit </title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="icon" type="image/png" href="http://www.cs.virginia.edu/~up3f/cs4750/images/db-icon.png" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="your name">
+    <meta name="description" content="include some description about your page">
+    <title>Hoos getting fit Login</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      >
 </head>
 
-<body>
+<body style="background-color: lightblue;">
     <div class="container">
         <br />
         <h1>Login</h1>
-        <form action="login.php" method="post">
-            <div class="form-group">
+        <form id="loginForm" action="existing.php" method="post">
+            <div class="form-group col-md-6">
                 Your email:
                 <input type="text" class="form-control" name="email" required />
             </div>
-            <div class="form-group">
+            <div class="form-group col-md-6">
                 Password:
-                <input type="password" class="form-control" name="pass" required />
+                <input type="password" class="form-control" name="password" required />
             </div>
-            <input type="submit" value="Login" name="login" class="btn btn-dark" />
-
+            <input type="submit" value="Login" name="login" class="btn btn-warning" />
         </form>
+
         <h1>Create account</h1>
-        <form action="login.php" method="post">
-            <div class="form-group">
+        <form id="registerForm" action="registration.php" method="post">
+        
+            <div class="form-group col-md-6">
                 Your email:
                 <input type="text" class="form-control" name="email" required />
             </div>
-            <div class="form-group">
+            <div class="form-group col-md-6">
                 Password:
-                <input type="text" class="form-control" name="pass" required />
+                <input type="text" class="form-control" name="password" input-typrequired />
             </div>
-            <div class="form-group">
+            <div class="form-group col-md-6">
                 First Name:
                 <input type="text" class="form-control" name="first" required />
             </div>
-            <div class="form-group">
+            <div class="form-group col-md-6">
                 Last Name:
                 <input type="text" class="form-control" name="last" required />
             </div>
-            <div class="form-group">
+            <div class="form-group col-md-6">
                 Username:
-                <input type="text" class="form-control" name="username" required />
+                <input type="text" class="form-control" name="username" />
             </div>
 
-            <input type="submit" value="Create Account" name="newaccount" class="btn btn-dark" />
-
+            <input type="submit" value="Create Account" name="new-account" class="btn btn-warning" />
         </form>
-
-
     </div>
 </body>
 
 </html>
-
