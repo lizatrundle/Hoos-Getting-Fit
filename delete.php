@@ -1,7 +1,5 @@
 <?php
 
-setrawcookie('email', '', time() - 3600); // Set cookie expiration time in the past to delete it
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -11,7 +9,7 @@ setrawcookie('email', '', time() - 3600); // Set cookie expiration time in the p
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="your name">
     <meta name="description" content="include some description about your page">
-    <title> Logout</title>
+    <title>Delete</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
       >
@@ -21,7 +19,7 @@ setrawcookie('email', '', time() - 3600); // Set cookie expiration time in the p
   <div class="container">
     <h1>Goodbye</h1>
     
-    Successfully logged out
+    Successfully deleted account
   </div>
 
 </body>

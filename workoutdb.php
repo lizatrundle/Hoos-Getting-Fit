@@ -35,6 +35,18 @@ function checkUser($email, $password)
     
     return $result;
 }
+
+// Function to delete the user account
+function deleteUser($email)
+{
+    global $db;
+    $query = "delete from user where email =:email";
+    $statement = $db->prepare($query);
+    $statement->bindValue(':email', $email);
+    $statement->execute();
+    $statement->closeCursor();
+    return $email;
+}
 // function getAllUsers() {
 //     global $db;
 //     $query="select * from user";
