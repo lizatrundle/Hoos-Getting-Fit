@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 
@@ -10,9 +9,18 @@
     <title> DashBoard</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh">
+    <style>
+        body {
+            background-color: lightblue;
+        }
+
+        .nav-tabs {
+            margin-top: 20px;
+        }
+    </style>
 </head>
 
-<body style="background-color: lightorange;">
+<body>
 
 <?php 
 
@@ -38,20 +46,32 @@ if (isset($_POST['deleteAccount'])) {
 
 <div class="container">
     <h1>Welcome, <font color="green" style="font-style:italic"><?php echo $email; ?></font></h1>
-    <p>
-        This is your dashboard.
-    </p>
-   
-    <p>
-        Log workout <a href="logworkout.php" title="Start the first question"> log workout</a>.
-        <br/><br/>
-        <form method="post" action="">
-            <input type="submit" name="logout" value="Log out" class="btn btn-warning" />
-            <br/><br/>
-            <input type="submit" name="deleteAccount" value="Delete Account" class="btn btn-danger" />
-        </form>
-    </p>
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link" href="workouts.php">Workouts</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="nutrition.php">Nutrition</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="goals.php">Goals</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="progress.php">Progress</a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div id="home" class="tab-pane fade show active">
+            <p>This is your dashboard home.</p>
+        </div>
+    </div>
 
+    <br/><br/>
+    <form method="post" action="">
+        <input type="submit" name="logout" value="Log out" class="btn btn-warning" />
+        <br/><br/>
+        <input type="submit" name="deleteAccount" value="Delete Account" class="btn btn-danger" />
+    </form>
 </div>
 
 <?php
