@@ -37,6 +37,10 @@ require('workoutdb.php');
                 Password:
                 <input type="password" class="form-control" name="password" required />
             </div>
+            <div class="form-group col-md-6">
+                Username:
+                <input type="text" class="form-control" name="user" required />
+            </div>
             <input type="submit" value="Login" name="login" class="btn btn-warning" />
         </form>
 
@@ -61,7 +65,7 @@ require('workoutdb.php');
             </div>
             <div class="form-group col-md-6">
                 Username:
-                <input type="text" class="form-control" name="username" />
+                <input type="text" class="form-control" name="user" />
             </div>
 
             <input type="submit" value="Create Account" name="new-account" class="btn btn-warning" />

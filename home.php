@@ -23,12 +23,20 @@
 <body>
 
 <?php 
+require('workoutdb.php');
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
 $email = array_key_exists('email', $_COOKIE) ? $_COOKIE['email'] : 'email not found in cookie';
-
+// set for username 
 setrawcookie('email', $_COOKIE['email'] = $email);
 
-require('workoutdb.php');
+$user = array_key_exists('username', $_COOKIE) ? $_COOKIE['user'] : 'username not found in cookie';
+setrawcookie('user', $_COOKIE['user'] = $user);
+
+$personalInfo = getPersonalInfo($user);
+
+
 
 // Check if the delete account button is clicked
 if (isset($_POST['deleteAccount'])) {
@@ -45,7 +53,7 @@ if (isset($_POST['deleteAccount'])) {
 ?>  
 
 <div class="container">
-    <h1>Welcome, <font color="green" style="font-style:italic"><?php echo $email; ?></font></h1>
+    <h1>Welcome, <font color="green" style="font-style:italic"><?php echo $user; ?></font></h1>
     <ul class="nav nav-tabs">
         <li class="nav-item">
             <a class="nav-link" href="workouts.php">Workouts</a>
@@ -64,7 +72,19 @@ if (isset($_POST['deleteAccount'])) {
         <div id="home" class="tab-pane fade show active">
             <p>This is your dashboard home.</p>
         </div>
-    </div>
+        </div>
+        <h2>Your Personal Information:</h2>
+            <?php
+            foreach ($personalInfo as $info) {
+                echo "<p>Username: " . $info['username'] . "</p>";
+                echo "<p>Resting Heart Rate: " . $info['resting_heart_rate'] . "</p>";
+                echo "<p>Workout Status: " . $info['workout_status'] . "</p>";
+                echo "<p>Age: " . $info['age'] . "</p>";
+                echo "<p>Weight: " . $info['weight'] . "</p>";
+                echo "<p>BMI: " . $info['BMI'] . "</p>";
+              
+            }
+            ?>
 
     <br/><br/>
     <form method="post" action="">
