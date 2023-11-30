@@ -19,7 +19,7 @@ function addUser($username, $first, $last, $pass, $email, $id)
     $statement->closeCursor();
     return $email; // Added a missing semicolon and fixed the return statement
 }
-function checkUser($email, $password)
+function checkUser($email, $password, $username)
 {
     global $db;
     $query = "select email from user where email =:email and password =:password";
@@ -46,6 +46,29 @@ function deleteUser($email)
     $statement->execute();
     $statement->closeCursor();
     return $email;
+}
+
+function confirmUsername($email){
+    global $db;
+    $query = "select username from user where email =:email";
+    $statement = $db->prepare($query);
+    $statement->bindValue(':email', $email);
+    $statement->execute();
+    $result = $statement->fetchColumn();
+    $statement->closeCursor();
+    return $result;
+}
+
+function getPersonalInfo($username)
+{
+    global $db;
+    $query = "select * from personal_information where username =:username";
+    $statement = $db->prepare($query);
+    $statement->bindValue(':username', $username);
+    $statement->execute();
+    $result = $statement->fetchAll();
+    $statement->closeCursor();
+    return $result;
 }
 // function getAllUsers() {
 //     global $db;
