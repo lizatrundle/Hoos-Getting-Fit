@@ -20,6 +20,7 @@
     <h1>Goodbye</h1>
     
     Successfully deleted account
+    <a href="login.php">Click here to relaunch the website</a>
   </div>
 
 </body>

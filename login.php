@@ -17,14 +17,16 @@ require('workoutdb.php');
     <meta name="author" content="your name">
     <meta name="description" content="include some description about your page">
     <title>Hoos getting fit Login</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-      >
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.6.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
 </head>
 
 <body style="background-color: lightblue;">
     <div class="container">
         <br />
+        <h1> HOOS GETTING FIT! </h1>
+        <img src="uva2.jpg"style="width: 200px; height: auto; margin-bottom: 20px;" />
         <h1>Login</h1>
         <form id="loginForm" action="existing.php" method="post">
             <div class="form-group col-md-6">
@@ -65,6 +67,7 @@ require('workoutdb.php');
             <input type="submit" value="Create Account" name="new-account" class="btn btn-warning" />
         </form>
     </div>
+  
 </body>
 
 </html>

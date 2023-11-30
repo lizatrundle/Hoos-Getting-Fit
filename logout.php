@@ -22,6 +22,7 @@ setrawcookie('email', '', time() - 3600); // Set cookie expiration time in the p
     <h1>Goodbye</h1>
     
     Successfully logged out
+    <a href="login.php">Click here to log back in</a>
   </div>
 
 </body>
