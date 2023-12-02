@@ -1,5 +1,5 @@
 <?php 
-require("connect-db.php");
+require("connectdb.php");
 require("logWorkout-db.php");
 $email = array_key_exists('email', $_COOKIE) ? $_COOKIE['email'] : 'email not found in cookie';
 setrawcookie('email', $_COOKIE['email'] = $email);
@@ -11,6 +11,51 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
        logWorkout($_POST['workoutName'], $_POST['duration'], $_POST['Difficulty'], $_POST['Type'], $_POST['Calories'], $email);
        $listOfWorkouts=getAllWorkouts($email);
     }
+
+    else if (!empty($_POST['exportCSV'])) {
+
+        // Start the output buffer.
+        ob_start();
+
+        // Set PHP headers for CSV output.
+        header('Content-Type: text/csv; charset=utf-8');
+        header('Content-Disposition: attachment; filename=workouts.csv');
+
+        // Create the headers.
+        $header_args = array('Work out Name', 'Duration', 'Difficulty', 'Type', 'Calories Burned' );
+
+        // Prepare the content to write it to CSV file.
+        //$data = array ( 
+        //  listOfWorkouts
+        //  foreach ($listOfWorkouts as $workOut) {
+        //    array($workOut['name'], (string)$workOut['duration'], $workOut['difficulty'], $workOut['type'], (string)$workOut['calories_burner']),
+        //  }
+        //);
+
+        $data = array(
+          array('1', 'Test 1', 'test1@test.com'),
+          array('2', 'Test 2', 'test2@test.com'),
+          array('3', 'Test 3', 'test3@test.com'),
+        );
+
+        // Clean up output buffer before writing anything to CSV file.
+        ob_end_clean();
+
+        // Create a file pointer with PHP.
+        $output = fopen( 'php://output', 'w' );
+
+        // Write headers to CSV file.
+        fputcsv( $output, $header_args );
+
+        // Loop through the prepared data to output it to CSV file.
+        foreach( $data as $data_item ){
+            fputcsv( $output, $data_item );
+        }
+
+        // Close the file pointer with PHP with the updated output.
+        fclose( $output );
+        exit;
+   }
 }
 ?>
  
@@ -30,6 +75,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 <body> 
 <a href="home.php" title="home"> return home</a>   
 <div class="container">
+<form name="exportCSVForm" action="logworkout.php" method="post"> 
+    <div class="row mb-3 mx-3">
+      <input value="Export CSV" type="submit" class="btn btn-primary" name="exportCSV"
+      title="Export CSV"/>        
+    </div>  
+</form> 
   <h1>Log New Workout</h1>
   <form name="logWorkOutForm" action="logworkout.php" method="post"> 
     <div class="row mb-3 mx-3">
@@ -90,8 +141,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
         <td><?php echo $workOut['calories_burner']; ?></td>   
         <td>
           <form action="logworkout.php" method="post">
-          <input value="Update" type="submit" class="btn btn-secondary" name="updateBtn"
-          title="Update"/>
           <input type="hidden" name="workoutName" value="<?php echo $workOut['workoutName']; ?>" />
           <input type="hidden" name="duration" value="<?php echo $workOut['duration']; ?>" />
           <input type="hidden" name="difficulty" value="<?php echo $workOut['difficulty']; ?>" />
@@ -99,13 +148,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
           <input type="hidden" name="calories_burner" value="<?php echo $workOut['calories_burner']; ?>" />
         </form> 
         </td>
-        <td>
-          <form action="logworkout.php" method="post"> 
-          <input value="Delete" type="submit" class="btn btn-danger" name="deleteButton"
-          title="delete"/>  
-          <input type="hidden" name="workoutToDelete" value="<?php echo $workOut['workoutName']; ?>" />
-        </form> 
-        </td>                   
+                     
       </tr>
     <?php endforeach; ?>
     </table>

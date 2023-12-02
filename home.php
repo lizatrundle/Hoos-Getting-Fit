@@ -32,7 +32,7 @@ $email = array_key_exists('email', $_COOKIE) ? $_COOKIE['email'] : 'email not fo
 setrawcookie('email', $_COOKIE['email'] = $email);
 
 $user = array_key_exists('username', $_COOKIE) ? $_COOKIE['user'] : 'username not found in cookie';
-setrawcookie('user', $_COOKIE['user'] = $user);
+#setrawcookie('user', $_COOKIE['user'] = $user);
 
 $personalInfo = getPersonalInfo($user);
 
@@ -53,10 +53,10 @@ if (isset($_POST['deleteAccount'])) {
 ?>  
 
 <div class="container">
-    <h1>Welcome, <font color="green" style="font-style:italic"><?php echo $user; ?></font></h1>
+    <h1>Welcome, <font color="green" style="font-style:italic"><?php echo $email; ?></font></h1>
     <ul class="nav nav-tabs">
         <li class="nav-item">
-            <a class="nav-link" href="workouts.php">Workouts</a>
+            <a class="nav-link" href="logworkout.php">Workouts</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="nutrition.php">Nutrition</a>
