@@ -22,21 +22,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
         header('Content-Disposition: attachment; filename=workouts.csv');
 
         // Create the headers.
-        $header_args = array('Work out Name', 'Duration', 'Difficulty', 'Type', 'Calories Burned' );
+        $header_args = array('Work out Name', 'Work out Name', 'Duration', 'Duration', 'Difficulty', 'Difficulty', 'Type', 'Type', 'Calories Burned', 'Calories Burned', 'email', 'email');
 
-        // Prepare the content to write it to CSV file.
+
+        $convertedRecords = [];
+        foreach ($listOfWorkouts as $workOut) {
+          $values=array_values($workOut);
+          $convertedRecords[] = $values;
+        }
+
         //$data = array ( 
-        //  listOfWorkouts
         //  foreach ($listOfWorkouts as $workOut) {
-        //    array($workOut['name'], (string)$workOut['duration'], $workOut['difficulty'], $workOut['type'], (string)$workOut['calories_burner']),
+        //    array($workOut['name'], $workOut['duration'], $workOut['difficulty'], $workOut['type'], $workOut['calories_burner'])
         //  }
         //);
 
-        $data = array(
-          array('1', 'Test 1', 'test1@test.com'),
-          array('2', 'Test 2', 'test2@test.com'),
-          array('3', 'Test 3', 'test3@test.com'),
-        );
+        $data = $convertedRecords;
 
         // Clean up output buffer before writing anything to CSV file.
         ob_end_clean();
@@ -70,17 +71,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     <title>Log Workout</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
+        body {
+            background-color: lightblue;
+        }
+
+        .nav-tabs {
+            margin-top: 20px;
+        }
+    </style>
 </head>
 
 <body> 
 <a href="home.php" title="home"> return home</a>   
 <div class="container">
-<form name="exportCSVForm" action="logworkout.php" method="post"> 
-    <div class="row mb-3 mx-3">
-      <input value="Export CSV" type="submit" class="btn btn-primary" name="exportCSV"
-      title="Export CSV"/>        
-    </div>  
-</form> 
   <h1>Log New Workout</h1>
   <form name="logWorkOutForm" action="logworkout.php" method="post"> 
     <div class="row mb-3 mx-3">
@@ -90,7 +94,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
       />        
     </div>  
     <div class="row mb-3 mx-3">
-      Duration
+      Duration (in minutes)
       <input type="number" class="form-control" name="duration" required 
       value=""/>        
     </div> 
@@ -117,6 +121,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
       title="Log Workout"/>        
     </div>  
   </form> 
+  <form name="exportCSVForm" action="logworkout.php" method="post"> 
+    <div class="row mb-3 mx-3">
+      <input value="Export CSV" type="submit" class="btn btn-primary" name="exportCSV"
+      title="Export CSV"/>        
+    </div>  
+</form> 
 </div>  
 
 <div class="row justify-content-center">  
