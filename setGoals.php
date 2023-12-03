@@ -113,20 +113,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
         <td><?php echo $goalList['heartRate']; ?></td>
         <td><?php echo $goalList['BMIchange']; ?></td>
         <td><?php echo $goalList['nutritionChange']; ?></td>
-        <td>
-          <form action="setGoals.php" method="post">
-          <input value="Update" type="submit" class="btn btn-secondary" name="updateBtn"
-          title="Update"/>
-          <input type="hidden" name="goalID" value="<?php echo $goalList['goalID']; ?>" />
-          <input type="hidden" name="targetedMuscle" value="<?php echo $goalList['targetedMuscle']; ?>" />
-          <input type="hidden" name="weightLoss" value="<?php echo $goalList['weightLoss']; ?>" />
-          <input type="hidden" name="muscleGain" value="<?php echo $goalList['muscleGain']; ?>" />
-          <input type="hidden" name="heartRate" value="<?php echo $goalList['heartRate']; ?>" />
-          <input type="hidden" name="BMIchange" value="<?php echo $goalList['BMIchange']; ?>" />
-          <input type="hidden" name="nutritionChange" value="<?php echo $goalList['nutritionChange']; ?>" />
-        </form> 
-        </td>
-             
       </tr>
     <?php endforeach; ?>
     </table>
