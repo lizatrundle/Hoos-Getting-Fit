@@ -25,6 +25,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     <title>Nutrition</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
+        body {
+            background-color: lightblue;
+        }
+
+        .nav-tabs {
+            margin-top: 20px;
+        }
+    </style>
 </head>
 
 <body> 
@@ -50,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
       />        
     </div> 
     <div class="row mb-3 mx-3">
-      Amount
+      Amount (in grams)
       <input type="number" class="form-control" name="Amount" required 
       value=""
       />        

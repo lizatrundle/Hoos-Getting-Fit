@@ -2,9 +2,10 @@
 function logNutrition($mealName, $Calories, $HealthGroup, $Amount, $email)
 {
     global $db;
-    $query = "insert into Meal_info values (:meal_id, :name_of_food, :health_group, :food_amount, :date, :Email, :Calories)";
+    //$lastPK=(int)getLastPK();
+    //$newPK=$lastPK+1;
+    $query = "insert into Meal_info values (:name_of_food, :health_group, :food_amount, :date, :Email, :Calories)";
     $statement = $db->prepare($query);
-    $statement->bindValue(':meal_id',  101); #need to figure this out
     $statement->bindValue(':name_of_food',  $mealName);
     $statement->bindValue(':health_group',  $HealthGroup);
     $statement->bindValue(':food_amount',  $Amount);
@@ -20,6 +21,16 @@ function getAllMeals($email) {
     $query="select * from Meal_info where Email=:Email";
     $statement = $db->prepare($query);
     $statement->bindValue(':Email',  $email);
+    $statement->execute();
+    $result=$statement->fetchAll();
+    $statement->closeCursor();
+    return $result;
+}
+
+function getLastPK() {
+    global $db;
+    $query="select max(meal_id) from Meal_info";
+    $statement = $db->prepare($query);
     $statement->execute();
     $result=$statement->fetchAll();
     $statement->closeCursor();
