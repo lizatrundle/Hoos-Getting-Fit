@@ -22,9 +22,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     <meta name="author" content="your name">
     <meta name="description" content="include some description about your page"> 
 
-    <title>Set Goal</title>
+    <title>Goals</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
+        body {
+            background-color: lightblue;
+        }
+
+        .nav-tabs {
+            margin-top: 20px;
+        }
+    </style>
 </head>
 
 <body> 
@@ -108,22 +117,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
           <form action="setGoals.php" method="post">
           <input value="Update" type="submit" class="btn btn-secondary" name="updateBtn"
           title="Update"/>
-          <input type="hidden" name="goalID" value="<?php echo $workOut['goalID']; ?>" />
-          <input type="hidden" name="targetedMuscle" value="<?php echo $workOut['targetedMuscle']; ?>" />
-          <input type="hidden" name="weightLoss" value="<?php echo $workOut['weightLoss']; ?>" />
-          <input type="hidden" name="muscleGain" value="<?php echo $workOut['muscleGain']; ?>" />
-          <input type="hidden" name="heartRate" value="<?php echo $workOut['heartRate']; ?>" />
-          <input type="hidden" name="BMIchange" value="<?php echo $workOut['BMIchange']; ?>" />
-          <input type="hidden" name="nutritionChange" value="<?php echo $workOut['nutritionChange']; ?>" />
+          <input type="hidden" name="goalID" value="<?php echo $goalList['goalID']; ?>" />
+          <input type="hidden" name="targetedMuscle" value="<?php echo $goalList['targetedMuscle']; ?>" />
+          <input type="hidden" name="weightLoss" value="<?php echo $goalList['weightLoss']; ?>" />
+          <input type="hidden" name="muscleGain" value="<?php echo $goalList['muscleGain']; ?>" />
+          <input type="hidden" name="heartRate" value="<?php echo $goalList['heartRate']; ?>" />
+          <input type="hidden" name="BMIchange" value="<?php echo $goalList['BMIchange']; ?>" />
+          <input type="hidden" name="nutritionChange" value="<?php echo $goalList['nutritionChange']; ?>" />
         </form> 
         </td>
-        <td>
-          <form action="setGoals.php" method="post"> 
-          <input value="Delete" type="submit" class="btn btn-danger" name="deleteButton"
-          title="delete"/>  
-          <input type="hidden" name="GoalToDelete" value="<?php echo $goalList['goalID']; ?>" />
-        </form> 
-        </td>                   
+             
       </tr>
     <?php endforeach; ?>
     </table>

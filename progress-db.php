@@ -6,7 +6,7 @@ function logProgress($metric_id, $weight_change, $muscle_change, $new_nutrients,
     $statement = $db->prepare($query);
     $statement->bindValue(':metricID',  $metric_id);
     $statement->bindValue(':weightChange',  $weight_change);
-    $statement->bindValue(':muscleGain',  $muscle_change);
+    $statement->bindValue(':muscleChange',  $muscle_change);
     $statement->bindValue(':newNutrients',  $new_nutrients);
     $statement->bindValue(':hrChange',  $heart_rate_change);
     $statement->bindValue(':bmiChange',  $BMI_change);
