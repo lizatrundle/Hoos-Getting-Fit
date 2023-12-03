@@ -104,20 +104,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
         <td><?php echo $metricsList['muscleChange']; ?></td> 
         <td><?php echo $metricsList['newNutrients']; ?></td>  
         <td><?php echo $metricsList['hrChange']; ?></td>
-        <td><?php echo $metricsList['bmiChange']; ?></td>
-        <td>
-          <form action="progress.php" method="post">
-          <input value="Update" type="submit" class="btn btn-secondary" name="updateBtn"
-          title="Update"/>
-          <input type="hidden" name="metricID" value="<?php echo $metricsList['metricID']; ?>" />
-          <input type="hidden" name="targetedMuscle" value="<?php echo $metricsList['targetedMuscle']; ?>" />
-          <input type="hidden" name="weightLoss" value="<?php echo $metricsList['weightLoss']; ?>" />
-          <input type="hidden" name="muscleGain" value="<?php echo $metricsList['muscleGain']; ?>" />
-          <input type="hidden" name="hrChange" value="<?php echo $metricsList['hrChange']; ?>" />
-          <input type="hidden" name="bmiChange" value="<?php echo $metricsList['bmiChange']; ?>" />
-        </form> 
-        </td>
-               
+        <td><?php echo $metricsList['bmiChange']; ?></td>              
       </tr>
     <?php endforeach; ?>
     </table>
