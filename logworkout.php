@@ -7,7 +7,12 @@ setrawcookie('email', $_COOKIE['email'] = $email);
 $listOfWorkouts=getAllWorkouts($email);
 if ($_SERVER['REQUEST_METHOD'] == 'POST') 
 {
-    if (!empty($_POST['actionButton'])) {
+    if (!empty($_POST['confirmUpdate'])) {
+      updateWorkoutByName($_POST['workoutName'], $_POST['duration'], $_POST['Difficulty'], $_POST['Type'], $_POST['Calories'], $email);
+      $listOfWorkouts=getAllWorkouts($email);
+    }
+
+    else if (!empty($_POST['actionButton'])) {
        logWorkout($_POST['workoutName'], $_POST['duration'], $_POST['Difficulty'], $_POST['Type'], $_POST['Calories'], $email);
        $listOfWorkouts=getAllWorkouts($email);
     }
@@ -90,37 +95,42 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     <div class="row mb-3 mx-3">
       Name of workout
       <input type="text" class="form-control" name="workoutName" required 
-        value=""
+        value="<?php echo $_POST['workoutNameToUpdate']; ?>"
       />        
     </div>  
     <div class="row mb-3 mx-3">
       Duration (in minutes)
       <input type="number" class="form-control" name="duration" required 
-      value=""/>        
+      value="<?php echo $_POST['durationToUpdate']; ?>"/>        
     </div> 
     <div class="row mb-3 mx-3">
       Difficulty
       <input type="text" class="form-control" name="Difficulty" required 
-      value=""
+      value="<?php echo $_POST['difficultyToUpdate']; ?>"
       />        
     </div> 
     <div class="row mb-3 mx-3">
       Type
       <input type="text" class="form-control" name="Type" required 
-      value=""
+      value="<?php echo $_POST['typeToUpdate']; ?>"
       />        
     </div>  
     <div class="row mb-3 mx-3">
       Calories Burned
       <input type="number" class="form-control" name="Calories" required 
-      value=""
+      value="<?php echo $_POST['calories_burnerToUpdate']; ?>"
       />        
     </div>   
     <div class="row mb-3 mx-3">
       <input value="Log Workout" type="submit" class="btn btn-primary" name="actionButton"
       title="Log Workout"/>        
     </div>  
+    <div class="row mb-3 mx-3">
+      <input value="Confirm Update" type="submit" class="btn btn-secondary" name="confirmUpdate"
+      title="confirm update"/>        
+    </div>   
   </form> 
+  
   <form name="exportCSVForm" action="logworkout.php" method="post"> 
     <div class="row mb-3 mx-3">
       <input value="Export CSV" type="submit" class="btn btn-primary" name="exportCSV"
@@ -151,11 +161,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
         <td><?php echo $workOut['calories_burner']; ?></td>   
         <td>
           <form action="logworkout.php" method="post">
-          <input type="hidden" name="workoutName" value="<?php echo $workOut['workoutName']; ?>" />
-          <input type="hidden" name="duration" value="<?php echo $workOut['duration']; ?>" />
-          <input type="hidden" name="difficulty" value="<?php echo $workOut['difficulty']; ?>" />
-          <input type="hidden" name="type" value="<?php echo $workOut['type']; ?>" />
-          <input type="hidden" name="calories_burner" value="<?php echo $workOut['calories_burner']; ?>" />
+          <input value="Update" type="submit" class="btn btn-secondary" name="updateBtn"
+          title="Update"/>
+          <input type="hidden" name="workoutNameToUpdate" value="<?php echo $workOut['name']; ?>" />
+          <input type="hidden" name="durationToUpdate" value="<?php echo $workOut['duration']; ?>" />
+          <input type="hidden" name="difficultyToUpdate" value="<?php echo $workOut['difficulty']; ?>" />
+          <input type="hidden" name="typeToUpdate" value="<?php echo $workOut['type']; ?>" />
+          <input type="hidden" name="calories_burnerToUpdate" value="<?php echo $workOut['calories_burner']; ?>" />
         </form> 
         </td>
                      
