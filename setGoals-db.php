@@ -1,16 +1,16 @@
 <?php
-function setGoal($goal_id, $targeted_muscle_groups, $weight_loss_goal, $muscle_gain_goal, $heart_rate_change_goal, $BMI_change_goal, $nutritional_change_goal, $email)
+function setGoal($goalID, $targetedMuscle, $weightLoss, $muscleGain, $heartRate, $BMIchange, $nutritionChange, $email)
 {
     global $db;
-    $query = "insert into GoalsInfo values (:goalID, :targetedMuscle, :weightLoss, :muscleGain, :heartRate, :BMIchange, :nutritionChange, :email)";
+    $query = "insert into GoalsInfo values (:goal_id, :targeted_muscle_groups, :weight_loss_goal, :muscle_gain_goal, :heart_rate_change_goal, :BMI_change_goal, :nutritional_change_goal, :email)";
     $statement = $db->prepare($query);
-    $statement->bindValue(':goalID',  $goal_id);
-    $statement->bindValue(':targetedMuscle',  $targeted_muscle_groups);
-    $statement->bindValue(':weightLoss',  $weight_loss_goal);
-    $statement->bindValue(':muscleGain',  $muscle_gain_goal);
-    $statement->bindValue(':heartRate',  $heart_rate_change_goal);
-    $statement->bindValue(':BMIchange',  $BMI_change_goal);
-    $statement->bindValue(':nutritionChange',  $nutritional_change_goal);
+    $statement->bindValue(':goal_id',  $goalID);
+    $statement->bindValue(':targeted_muscle_groups',  $targetedMuscle);
+    $statement->bindValue(':weight_loss_goal',  $weightLoss);
+    $statement->bindValue(':muscle_gain_goal',  $muscleGain);
+    $statement->bindValue(':heart_rate_change_goal',  $heartRate);
+    $statement->bindValue(':BMI_change_goal',  $BMIchange);
+    $statement->bindValue(':nutritional_change_goal',  $nutritionChange);
     $statement->bindValue(':email',  $email);
     $statement->execute();
     $statement->closeCursor();
@@ -18,7 +18,7 @@ function setGoal($goal_id, $targeted_muscle_groups, $weight_loss_goal, $muscle_g
 
 function getAllGoals($email) {
     global $db;
-    $query="select * from GoalsInfo where email=:email";
+    $query="select * from GoalsInfo where Email=:email";
     $statement = $db->prepare($query);
     $statement->bindValue(':email',  $email);
     $statement->execute();

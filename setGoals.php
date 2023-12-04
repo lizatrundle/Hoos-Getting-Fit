@@ -1,5 +1,5 @@
-<?php 
-require("connect-db.php");
+<<?php 
+require("connectdb.php");
 require("setGoals-db.php");
 $email = array_key_exists('email', $_COOKIE) ? $_COOKIE['email'] : 'email not found in cookie';
 setrawcookie('email', $_COOKIE['email'] = $email);
@@ -106,18 +106,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
       </thead>
     <?php foreach ($listOfGoals as $goalList): ?>
       <tr>
-        <td><?php echo $goalList['goalID']; ?></td>
-        <td><?php echo $goalList['targetedMuscle']; ?></td>        
-        <td><?php echo $goalList['weightLoss']; ?></td> 
-        <td><?php echo $goalList['muscleGain']; ?></td>  
-        <td><?php echo $goalList['heartRate']; ?></td>
-        <td><?php echo $goalList['BMIchange']; ?></td>
-        <td><?php echo $goalList['nutritionChange']; ?></td>
+        <td><?php echo $goalList['goal_id']; ?></td>
+        <td><?php echo $goalList['targeted_muscle_groups']; ?></td>        
+        <td><?php echo $goalList['weight_loss_goal']; ?></td> 
+        <td><?php echo $goalList['muscle_gain_goal']; ?></td>  
+        <td><?php echo $goalList['heart_rate_change_goal']; ?></td>
+        <td><?php echo $goalList['BMI_change_goal']; ?></td>
+        <td><?php echo $goalList['nutritional_change_goal']; ?></td>
       </tr>
     <?php endforeach; ?>
     </table>
 </div>  
 </body>
 </html>
-
-
