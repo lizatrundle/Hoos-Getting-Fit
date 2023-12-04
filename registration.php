@@ -1,5 +1,8 @@
 <?php
 
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 require('workoutdb.php');
 
 $email = $_POST['email'];
@@ -22,3 +25,4 @@ setrawcookie('user', $_COOKIE['user'] = $acc_username);
 header("Location: home.php");
 
 exit();
+?>
