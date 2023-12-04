@@ -25,4 +25,32 @@ function getAllGoals($email) {
     $statement->closeCursor();
     return $result;
 }
+function updateGoalByID($goalID, $targetedMuscle, $weightLoss, $muscleGain, $heartRate, $BMIchange, $nutritionChange, $email)
+{
+    global $db;
+    $query = "UPDATE GoalsInfo 
+              SET goal_id = :goalID, 
+                  targeted_muscle_groups = :targetedMuscle, 
+                  weight_loss_goal = :weightLoss, 
+                  muscle_gain_goal = :muscleGain, 
+                  heart_rate_change_goal = :heartRate, 
+                  BMI_change_goal = :BMIchange, 
+                  nutritional_change_goal = :nutritionChange 
+              WHERE goal_id = :goalIDParam AND email = :email";
+
+    $statement = $db->prepare($query);
+    $statement->bindValue(':goalID', $goalID);
+    $statement->bindValue(':targetedMuscle', $targetedMuscle);
+    $statement->bindValue(':weightLoss', $weightLoss);
+    $statement->bindValue(':muscleGain', $muscleGain);
+    $statement->bindValue(':heartRate', $heartRate);
+    $statement->bindValue(':BMIchange', $BMIchange);
+    $statement->bindValue(':nutritionChange', $nutritionChange);
+    $statement->bindValue(':goalIDParam', $goalID);
+    $statement->bindValue(':email', $email);
+
+    $statement->execute();
+    $statement->closeCursor();
+}
+
 ?> 
