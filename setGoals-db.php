@@ -15,10 +15,9 @@ function setGoal($goalID, $targetedMuscle, $weightLoss, $muscleGain, $heartRate,
     $statement->execute();
     $statement->closeCursor();
 }
-
 function getAllGoals($email) {
     global $db;
-    $query="select * from GoalsInfo where Email=:email";
+    $query="select * from GoalsInfo where email=:email";
     $statement = $db->prepare($query);
     $statement->bindValue(':email',  $email);
     $statement->execute();

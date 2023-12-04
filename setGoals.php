@@ -1,6 +1,8 @@
-<<?php 
+<?php 
 require("connectdb.php");
 require("setGoals-db.php");
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 $email = array_key_exists('email', $_COOKIE) ? $_COOKIE['email'] : 'email not found in cookie';
 setrawcookie('email', $_COOKIE['email'] = $email);
 
@@ -106,13 +108,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
       </thead>
     <?php foreach ($listOfGoals as $goalList): ?>
       <tr>
-        <td><?php echo $goalList['goal_id']; ?></td>
-        <td><?php echo $goalList['targeted_muscle_groups']; ?></td>        
-        <td><?php echo $goalList['weight_loss_goal']; ?></td> 
-        <td><?php echo $goalList['muscle_gain_goal']; ?></td>  
-        <td><?php echo $goalList['heart_rate_change_goal']; ?></td>
-        <td><?php echo $goalList['BMI_change_goal']; ?></td>
-        <td><?php echo $goalList['nutritional_change_goal']; ?></td>
+        <td><?php echo $goalList['goalID']; ?></td>
+        <td><?php echo $goalList['targetedMuscle']; ?></td>        
+        <td><?php echo $goalList['weightLoss']; ?></td> 
+        <td><?php echo $goalList['muscleGain']; ?></td>  
+        <td><?php echo $goalList['heartRate']; ?></td>
+        <td><?php echo $goalList['BMIchange']; ?></td>
+        <td><?php echo $goalList['nutritionChange']; ?></td>
+        <td>
+          <form action="setGoals.php" method="post">
+          <input value="Update" type="submit" class="btn btn-secondary" name="updateBtn"
+          title="Update"/>
+          <input type="hidden" name="goalID" value="<?php echo $goalList['goalID']; ?>" />
+          <input type="hidden" name="targetedMuscle" value="<?php echo $goalList['targetedMuscle']; ?>" />
+          <input type="hidden" name="weightLoss" value="<?php echo $goalList['weightLoss']; ?>" />
+          <input type="hidden" name="muscleGain" value="<?php echo $goalList['muscleGain']; ?>" />
+          <input type="hidden" name="heartRate" value="<?php echo $goalList['heartRate']; ?>" />
+          <input type="hidden" name="BMIchange" value="<?php echo $goalList['BMIchange']; ?>" />
+          <input type="hidden" name="nutritionChange" value="<?php echo $goalList['nutritionChange']; ?>" />
+        </form> 
+        </td>
+             
       </tr>
     <?php endforeach; ?>
     </table>

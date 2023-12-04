@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 function logProgress($metric_id, $weight_change, $muscle_change, $new_nutrients, $heart_rate_change, $BMI_change, $email)
 {
     global $db;
