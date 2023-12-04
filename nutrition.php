@@ -1,5 +1,5 @@
 <?php 
-require("connect-db.php");
+require("connectdb.php");
 require("nutrition-db.php");
 $email = array_key_exists('email', $_COOKIE) ? $_COOKIE['email'] : 'email not found in cookie';
 setrawcookie('email', $_COOKIE['email'] = $email);
