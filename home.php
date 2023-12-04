@@ -62,7 +62,7 @@ if (isset($_POST['deleteAccount'])) {
             <a class="nav-link" href="nutrition.php">Nutrition</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="goals.php">Goals</a>
+            <a class="nav-link" href="setGoals.php">Goals</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="progress.php">Progress</a>
