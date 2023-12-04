@@ -2,7 +2,7 @@
 function logProgress($metric_id, $weight_change, $muscle_change, $new_nutrients, $heart_rate_change, $BMI_change, $email)
 {
     global $db;
-    $query = "insert into loggedProgress values (:goalID, :weightChange, :muscleChange, :newNutrients, :hrChange, :bmiChange, :email)";
+    $query = "insert into Performance values (:goalID, :weightChange, :muscleChange, :newNutrients, :hrChange, :bmiChange, :email)";
     $statement = $db->prepare($query);
     $statement->bindValue(':metricID',  $metric_id);
     $statement->bindValue(':weightChange',  $weight_change);
@@ -17,7 +17,7 @@ function logProgress($metric_id, $weight_change, $muscle_change, $new_nutrients,
 
 function getAllProgressMetrics($email) {
     global $db;
-    $query="select * from loggedProgress where email=:email";
+    $query="select * from Performance where email=:email";
     $statement = $db->prepare($query);
     $statement->bindValue(':email',  $email);
     $statement->execute();
