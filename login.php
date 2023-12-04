@@ -11,15 +11,25 @@ require('workoutdb.php');
 <!DOCTYPE html>
 <html>
 
+
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF=8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="your name">
-    <meta name="description" content="include some description about your page">
-    <title>Hoos getting fit Login</title>
-    
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.6.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <meta name="description" content="include some description about your page"> 
 
+    <title>Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
+        body {
+            background-color: lightblue;
+        }
+
+        .nav-tabs {
+            margin-top: 20px;
+        }
+    </style>
 </head>
 
 <body style="background-color: lightblue;">
