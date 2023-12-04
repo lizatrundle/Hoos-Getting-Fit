@@ -1,17 +1,15 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
 function logProgress($metric_id, $weight_change, $muscle_change, $new_nutrients, $heart_rate_change, $BMI_change, $email)
 {
     global $db;
-    $query = "insert into Performance values (:goalID, :weightChange, :muscleChange, :newNutrients, :hrChange, :bmiChange, :email)";
+    $query = "insert into Performance values (:metric_id, :weight_change, :muscle_change, :new_nutrients, :heart_rate_change, :BMI_change, :email)";
     $statement = $db->prepare($query);
-    $statement->bindValue(':metricID',  $metric_id);
-    $statement->bindValue(':weightChange',  $weight_change);
-    $statement->bindValue(':muscleChange',  $muscle_change);
-    $statement->bindValue(':newNutrients',  $new_nutrients);
-    $statement->bindValue(':hrChange',  $heart_rate_change);
-    $statement->bindValue(':bmiChange',  $BMI_change);
+    $statement->bindValue(':metric_id',  $metricID);
+    $statement->bindValue(':weight_change',  $weightChange);
+    $statement->bindValue(':muscle_change',  $muscleChange);
+    $statement->bindValue(':new_nutrients',  $newNutrients);
+    $statement->bindValue(':heart_rate_change',  $hrChange);
+    $statement->bindValue(':BMI_change',  $bmiChange);
     $statement->bindValue(':email',  $email);
     $statement->execute();
     $statement->closeCursor();
@@ -19,7 +17,7 @@ function logProgress($metric_id, $weight_change, $muscle_change, $new_nutrients,
 
 function getAllProgressMetrics($email) {
     global $db;
-    $query="select * from Performance where email=:email";
+    $query="select * from Performance where Email=:email";
     $statement = $db->prepare($query);
     $statement->bindValue(':email',  $email);
     $statement->execute();
