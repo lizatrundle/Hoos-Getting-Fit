@@ -1,5 +1,5 @@
 <?php 
-require("connect-db.php");
+require("connectdb.php");
 require("progress-db.php");
 $email = array_key_exists('email', $_COOKIE) ? $_COOKIE['email'] : 'email not found in cookie';
 setrawcookie('email', $_COOKIE['email'] = $email);
@@ -99,12 +99,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
       </thead>
     <?php foreach ($listOfProgressMetrics as $metricsList): ?>
       <tr>
-        <td><?php echo $metricsList['metricID']; ?></td>
-        <td><?php echo $metricsList['weightChange']; ?></td>        
-        <td><?php echo $metricsList['muscleChange']; ?></td> 
-        <td><?php echo $metricsList['newNutrients']; ?></td>  
-        <td><?php echo $metricsList['hrChange']; ?></td>
-        <td><?php echo $metricsList['bmiChange']; ?></td>              
+        <td><?php echo $metricsList['metric_id']; ?></td>
+        <td><?php echo $metricsList['weight_change']; ?></td>        
+        <td><?php echo $metricsList['muscle_change']; ?></td> 
+        <td><?php echo $metricsList['new_nutrients']; ?></td>  
+        <td><?php echo $metricsList['heart_rate_change']; ?></td>
+        <td><?php echo $metricsList['BMI_change']; ?></td>              
       </tr>
     <?php endforeach; ?>
     </table>
