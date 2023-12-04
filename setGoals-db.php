@@ -2,7 +2,7 @@
 function setGoal($goal_id, $targeted_muscle_groups, $weight_loss_goal, $muscle_gain_goal, $heart_rate_change_goal, $BMI_change_goal, $nutritional_change_goal, $email)
 {
     global $db;
-    $query = "insert into loggedGoal values (:goalID, :targetedMuscle, :weightLoss, :muscleGain, :heartRate, :BMIchange, :nutritionChange, :email)";
+    $query = "insert into GoalsInfo values (:goalID, :targetedMuscle, :weightLoss, :muscleGain, :heartRate, :BMIchange, :nutritionChange, :email)";
     $statement = $db->prepare($query);
     $statement->bindValue(':goalID',  $goal_id);
     $statement->bindValue(':targetedMuscle',  $targeted_muscle_groups);
@@ -18,7 +18,7 @@ function setGoal($goal_id, $targeted_muscle_groups, $weight_loss_goal, $muscle_g
 
 function getAllGoals($email) {
     global $db;
-    $query="select * from loggedGoal where email=:email";
+    $query="select * from GoalsInfo where email=:email";
     $statement = $db->prepare($query);
     $statement->bindValue(':email',  $email);
     $statement->execute();
