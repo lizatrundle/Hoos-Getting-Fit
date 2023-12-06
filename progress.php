@@ -10,7 +10,7 @@ $listOfProgressMetrics=getAllProgressMetrics($email);
 if ($_SERVER['REQUEST_METHOD'] == 'POST') 
 {   
     if (!empty($_POST['confirmUpdate'])) {
-      updateProgressbyID($_POST['metricID'], $_POST['weightChange'], $_POST['muscleChange'], $_POST['newNutrients'], $_POST['hrChange'], $_POST['bmiChange'], $email);
+      updateProgressByID($_POST['metricID'], $_POST['weightChange'], $_POST['muscleChange'], $_POST['newNutrients'], $_POST['hrChange'], $_POST['bmiChange'], $email);
       $listOfProgressMetrics=getAllProgressMetrics($email);
     }
     elseif (!empty($_POST['actionButton'])) {
