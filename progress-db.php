@@ -1,5 +1,5 @@
 <?php
-function logProgress($metric_id, $weight_change, $muscle_change, $new_nutrients, $heart_rate_change, $BMI_change, $email)
+function logProgress($metricID, $weightChange, $muscleChange, $newNutrients, $hrChange, $bmiChange, $email)
 {
     global $db;
     $query = "insert into Performance values (:metric_id, :weight_change, :muscle_change, :new_nutrients, :heart_rate_change, :BMI_change, :email)";
