@@ -119,12 +119,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
           <form action="progress.php" method="post">
           <input value="Update" type="submit" class="btn btn-secondary" name="updateBtn"
           title="Update"/>
-          <input type="hidden" name="metricIDToUpdate" value="<?php echo $metricList['metric_id']; ?>" />
-          <input type="hidden" name="weightChangeToUpdate" value="<?php echo $metricList['weight_change']; ?>" />
-          <input type="hidden" name="muscleChangeToUpdate" value="<?php echo $metricList['muscle_change']; ?>" />
-          <input type="hidden" name="newNutrientsToUpdate" value="<?php echo $metricList['new_nutrients']; ?>" />
-          <input type="hidden" name="hrChangeToUpdate" value="<?php echo $metricList['heart_rate_change']; ?>" />
-          <input type="hidden" name="bmiChangeToUpdate" value="<?php echo $metricList['BMI_change']; ?>" />
+          <input type="hidden" name="metricIDToUpdate" value="<?php echo $metricsList['metric_id']; ?>" />
+          <input type="hidden" name="weightChangeToUpdate" value="<?php echo $metricsList['weight_change']; ?>" />
+          <input type="hidden" name="muscleChangeToUpdate" value="<?php echo $metricsList['muscle_change']; ?>" />
+          <input type="hidden" name="newNutrientsToUpdate" value="<?php echo $metricsList['new_nutrients']; ?>" />
+          <input type="hidden" name="hrChangeToUpdate" value="<?php echo $metricsList['heart_rate_change']; ?>" />
+          <input type="hidden" name="bmiChangeToUpdate" value="<?php echo $metricsList['BMI_change']; ?>" />
         </form> 
         </td>              
       </tr>
