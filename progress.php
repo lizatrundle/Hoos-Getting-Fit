@@ -8,10 +8,14 @@ setrawcookie('email', $_COOKIE['email'] = $email);
 
 $listOfProgressMetrics=getAllProgressMetrics($email);
 if ($_SERVER['REQUEST_METHOD'] == 'POST') 
-{
-    if (!empty($_POST['actionButton'])) {
-       logProgress($_POST['metricID'], $_POST['weightChange'], $_POST['muscleChange'], $_POST['newNutrients'], $_POST['hrChange'], $_POST['bmiChange'], $email);
-       $listOfProgressMetrics=getAllProgressMetrics($email);
+{   
+    if (!empty($_POST['confirmUpdate'])) {
+      updateProgressbyID($_POST['metricID'], $_POST['weightChange'], $_POST['muscleChange'], $_POST['newNutrients'], $_POST['hrChange'], $_POST['bmiChange'], $email);
+      $listOfProgressMetrics=getAllProgressMetrics($email);
+    }
+    elseif (!empty($_POST['actionButton'])) {
+      logProgress($_POST['metricID'], $_POST['weightChange'], $_POST['muscleChange'], $_POST['newNutrients'], $_POST['hrChange'], $_POST['bmiChange'], $email);
+      $listOfProgressMetrics=getAllProgressMetrics($email);
     }
 }
 ?>
@@ -46,42 +50,46 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     <div class="row mb-3 mx-3">
       Metric ID
       <input type="text" class="form-control" name="metricID" required 
-        value=""
+        value="<?php echo $_POST['metricIDToUpdate']; ?>"
       />        
     </div>  
     <div class="row mb-3 mx-3">
       Weight Change
       <input type="number" class="form-control" name="weightChange" required 
-      value=""/>        
+      value="<?php echo $_POST['weightChangeToUpdate']; ?>"/>        
     </div> 
     <div class="row mb-3 mx-3">
       Muscle Change
       <input type="text" class="form-control" name="muscleChange" required 
-      value=""
+      value="<?php echo $_POST['muscleChangeToUpdate']; ?>"
       />        
     </div> 
     <div class="row mb-3 mx-3">
       New Nutrients
       <input type="text" class="form-control" name="newNutrients" required 
-      value=""
+      value="<?php echo $_POST['newNutrientsToUpdate']; ?>"
       />        
     </div>  
     <div class="row mb-3 mx-3">
       Heart Rate Change
       <input type="number" class="form-control" name="hrChange" required 
-      value=""
+      value="<?php echo $_POST['hrChangeToUpdate']; ?>"
       />        
     </div>   
     <div class="row mb-3 mx-3">
       BMI Change
       <input type="number" class="form-control" name="bmiChange" required 
-      value=""
+      value="<?php echo $_POST['bmiChangeToUpdate']; ?>"
       />        
     </div>    
     <div class="row mb-3 mx-3">
       <input value="Log Progress" type="submit" class="btn btn-primary" name="actionButton"
       title="Log Progress"/>        
     </div>  
+    <div class="row mb-3 mx-3">
+      <input value="Confirm Update" type="submit" class="btn btn-primary" name="confirmUpdate"
+      title="confirm update"/>        
+    </div> 
   </form> 
 </div>  
 
@@ -106,7 +114,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
         <td><?php echo $metricsList['muscle_change']; ?></td> 
         <td><?php echo $metricsList['new_nutrients']; ?></td>  
         <td><?php echo $metricsList['heart_rate_change']; ?></td>
-        <td><?php echo $metricsList['BMI_change']; ?></td>              
+        <td><?php echo $metricsList['BMI_change']; ?></td>
+        <td>
+          <form action="progress.php" method="post">
+          <input value="Update" type="submit" class="btn btn-secondary" name="updateBtn"
+          title="Update"/>
+          <input type="hidden" name="metricIDToUpdate" value="<?php echo $metricList['metric_id']; ?>" />
+          <input type="hidden" name="weightChangeToUpdate" value="<?php echo $metricList['weight_change']; ?>" />
+          <input type="hidden" name="muscleChangeToUpdate" value="<?php echo $metricList['muscle_change']; ?>" />
+          <input type="hidden" name="newNutrientsToUpdate" value="<?php echo $metricList['new_nutrients']; ?>" />
+          <input type="hidden" name="hrChangeToUpdate" value="<?php echo $metricList['heart_rate_change']; ?>" />
+          <input type="hidden" name="bmiChangeToUpdate" value="<?php echo $metricList['BMI_change']; ?>" />
+        </form> 
+        </td>              
       </tr>
     <?php endforeach; ?>
     </table>

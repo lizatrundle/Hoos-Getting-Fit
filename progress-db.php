@@ -17,12 +17,38 @@ function logProgress($metricID, $weightChange, $muscleChange, $newNutrients, $hr
 
 function getAllProgressMetrics($email) {
     global $db;
-    $query="select * from Performance where Email=:email";
+    $query="select * from Performance where email=:email";
     $statement = $db->prepare($query);
     $statement->bindValue(':email',  $email);
     $statement->execute();
     $result=$statement->fetchAll();
     $statement->closeCursor();
     return $result;
+}
+
+function updateProgressByID($metricID, $weightChange, $muscleChange, $newNutrients, $hrChange, $bmiChange, $email)
+{
+    global $db;
+    $query = "UPDATE Performance 
+              SET metric_id = :metricID, 
+                  weight_change = :weightChange, 
+                  muscle_change = :muscleChange, 
+                  new_nutrients = :newNutrients, 
+                  heart_rate_change = :hrChange, 
+                  BMI_change = :bmiChange, 
+              WHERE metric_id = :metricIDParam AND email = :email";
+
+    $statement = $db->prepare($query);
+    $statement->bindValue(':metricID', $metricID);
+    $statement->bindValue(':weightChange', $weightChange);
+    $statement->bindValue(':muscleChange', $muscleChange);
+    $statement->bindValue(':newNutrients', $newNutrients);
+    $statement->bindValue(':hrChange', $hrChange);
+    $statement->bindValue(':bmiChange', $bmiChange);
+    $statement->bindValue(':metricIDParam', $metricID);
+    $statement->bindValue(':email', $email);
+
+    $statement->execute();
+    $statement->closeCursor();
 }
 ?> 
