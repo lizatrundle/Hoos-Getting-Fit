@@ -1,8 +1,8 @@
 <?php 
 require("connectdb.php");
 require("progress-db.php");
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+#error_reporting(E_ALL);
+#ini_set('display_errors', 1);
 $email = array_key_exists('email', $_COOKIE) ? $_COOKIE['email'] : 'email not found in cookie';
 setrawcookie('email', $_COOKIE['email'] = $email);
 
